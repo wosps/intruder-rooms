@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { FaUserAlt } from "react-icons/fa"
-import RoomCard from "./RoomCard"
+import RoomCard from "../components/RoomCard"
 
 type RoomListProps = {
     data: any,
