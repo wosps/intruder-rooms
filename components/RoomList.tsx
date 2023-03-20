@@ -28,13 +28,26 @@ export default function RoomList( { data } : RoomListProps) {
     const [rooms, setRooms] = useState(data as RoomListData)
     const [playerCount, setPlayerCount] = useState(0)
 
-    useEffect(() => {
-        setRooms(data)
-        let count = 0
-        data.data.forEach((room: roomType) => {
-            count += room.agentCount
+    function makeRoomList() {
+        const roomElements = data.data.map((roomFound: any) => {
+            return(<RoomCard key={roomFound.id} id={roomFound.id} name={roomFound.name} region={roomFound.region} official={roomFound.official} currentMap={roomFound.currentMap.name} agentCount={roomFound.agentCount} maxAgents={roomFound.maxAgents} creator={roomFound.creator.name}/>)
         })
-        setPlayerCount(count)
+        return roomElements
+    }
+
+    useEffect(() => {
+
+        function getPlayerCount() {
+            setRooms(data)
+            let count = 0
+            data.data.forEach((room: roomType) => {
+                count += room.agentCount
+            })
+            setPlayerCount(count)
+        }
+
+        getPlayerCount()
+
     }, [rooms])
 
     return (
@@ -68,9 +81,7 @@ export default function RoomList( { data } : RoomListProps) {
                 </div>
         
                 <div className="flex flex-col gap-3 pt-3 md:flex-row md:flex-wrap">
-                {data.data.map((roomFound: any) => (
-                    <RoomCard key={roomFound.id} id={roomFound.id} name={roomFound.name} region={roomFound.region} official={roomFound.official} currentMap={roomFound.currentMap.name} agentCount={roomFound.agentCount} maxAgents={roomFound.maxAgents} />
-                ))}
+                {makeRoomList()}
                 </div>
 
         </div>
