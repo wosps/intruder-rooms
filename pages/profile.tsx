@@ -16,7 +16,7 @@ export default function Home() {
       </Head>
       <main>
         <Nav />
-        <div class="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200">
         </div>  
       </main>
     </>
