@@ -67,7 +67,7 @@ export default function RoomList( { data } : RoomListProps) {
                     </div>
                 </div>
         
-                <div className="flex flex-col gap-3 pt-3">
+                <div className="flex flex-col gap-3 pt-3 md:flex-row md:flex-wrap">
                 {data.data.map((roomFound: any) => (
                     <RoomCard key={roomFound.id} id={roomFound.id} name={roomFound.name} region={roomFound.region} official={roomFound.official} currentMap={roomFound.currentMap.name} agentCount={roomFound.agentCount} maxAgents={roomFound.maxAgents} />
                 ))}
