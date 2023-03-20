@@ -4,6 +4,10 @@ import RoomCard from "./RoomCard"
 
 type RoomListProps = {
     data: any,
+}
+
+type RoomListData = {
+    data: any,
     totalCount: number,
 }
 
@@ -21,7 +25,7 @@ type roomType = {
 
 export default function RoomList( { data } : RoomListProps) {
 
-    const [rooms, setRooms] = useState(data as RoomListProps)
+    const [rooms, setRooms] = useState(data as RoomListData)
     const [playerCount, setPlayerCount] = useState(0)
 
     useEffect(() => {
