@@ -14,7 +14,7 @@ type RoomCardProps = {
 
 export default function RoomCard( { id, name, region, official, currentMap, agentCount, maxAgents, creator } : RoomCardProps) {
 
-    const [agentData, setAgentData] = useState([] as Array<string | number>)
+    const [agentData, setAgentData] = useState([] as any)
 
     useEffect(() => {
         async function fetchAgentData() {
@@ -23,7 +23,7 @@ export default function RoomCard( { id, name, region, official, currentMap, agen
             await setAgentData(data)
         }
         fetchAgentData()
-    }, [id])
+    }, [])
 
     useEffect(() => {
         console.log(agentData)
@@ -49,7 +49,7 @@ export default function RoomCard( { id, name, region, official, currentMap, agen
                     <p className="text-md text-gray-200">Player List</p>
                     <div className="flex flex-row flex-wrap font-light text-gray-300">
                         {agentData.map((agent: any) => {
-                            return(<p className="mr-1">{agent.name},</p>)
+                            return(<p key={agent.id} className="mr-1">{agent.name},</p>)
                         })
                         }
                     </div>
