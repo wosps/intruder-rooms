@@ -16,10 +16,10 @@ export default function FourOhFour() {
       </Head>
       <main className='min-h-screen bg-base-200'>
         <Nav />
-        <div className='px-6 py-3'>
+        <div className='px-6 h-[calc(100vh-100px)] flex flex-col items-center justify-center'>
             <div>
                 <h1 className='text-4xl font-medium text-gray-200'>Error 404!</h1>
-                <h2 className='text-2xl font-extralight text-gray-400'>Sorry, this page doesn't exist.</h2>
+                <h2 className='text-2xl font-extralight text-gray-400'>Sorry, this page doesn&apos;t exist.</h2>
             </div>
         </div>
       </main>
