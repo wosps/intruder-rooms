@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { FaUserAlt } from "react-icons/fa"
 
@@ -12,6 +13,20 @@ type RoomCardProps = {
     creator: string,
 }
 
+type AgentType = {
+    id: number,
+    role: string,
+    loginCount: number,
+    firstLogin: string,
+    lastLogin: string,
+    lastUpdate: string,
+    stats: any,
+    status: any,
+    steamId: string,
+    name: string,
+    avatarUrl: string,
+}
+
 export default function RoomCard( { id, name, region, official, currentMap, agentCount, maxAgents, creator } : RoomCardProps) {
 
     const [agentData, setAgentData] = useState([] as any)
@@ -24,10 +39,6 @@ export default function RoomCard( { id, name, region, official, currentMap, agen
         }
         fetchAgentData()
     }, [])
-
-    useEffect(() => {
-        console.log(agentData)
-    }, [agentData])
     
     return (
             <div tabIndex={0} className="collapse collapse-arrow card w-96 bg-base-100 shadow-xl max-w-full">
@@ -46,10 +57,10 @@ export default function RoomCard( { id, name, region, official, currentMap, agen
                 </div>
                 <div className="collapse-content -mt-2 px-5">
                     <div className="border-t-2 border-gray-700 mb-2"></div>
-                    <p className="text-md text-gray-200">Player List</p>
-                    <div className="flex flex-row flex-wrap font-light text-gray-300">
-                        {agentData.map((agent: any) => {
-                            return(<p key={agent.id} className="mr-1">{agent.name},</p>)
+                    <p className="text-md text-gray-200 font-bold">Player List</p>
+                    <div className="font-light text-gray-300">
+                        {agentData.map((agent: AgentType) => {
+                            return(<Link key={agent.id} href={`/profile/${agent.steamId}`} className="link link-hover"><p key={agent.id} className={agent.role == "Demoted" ? " text-red-200" : agent.role == "AUG" ? " text-green-200" : ""}>{agent.name}</p></Link>                            )
                         })
                         }
                     </div>
