@@ -52,6 +52,7 @@ export default function RoomList( { data } : RoomListProps) {
 
     return (
         <div className="py-3 px-6 bg-base-200">
+            <div className="md:max-w-3xl md:mx-auto">
                 <div className="text-lg flex gap-3 pb-3 border-b-2 border-gray-700">
                     <h1 className=" font-medium">Current Rooms</h1>
                     <select defaultValue={"All"} className="select select-bordered select-sm w-20">
@@ -83,7 +84,7 @@ export default function RoomList( { data } : RoomListProps) {
                 <div className="flex flex-col gap-3 pt-3 md:flex-row md:flex-wrap">
                 {makeRoomList()}
                 </div>
-
+            </div>
         </div>
     )
 }

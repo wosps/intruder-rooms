@@ -41,7 +41,7 @@ export default function RoomCard( { id, name, region, official, currentMap, agen
     }, [])
     
     return (
-            <div tabIndex={0} className="collapse collapse-arrow card w-96 bg-base-100 shadow-xl max-w-full">
+            <div tabIndex={0} className="collapse collapse-arrow card w-96 md:w-90 bg-base-100 shadow-xl max-w-full">
                 <input type="checkbox" />
                 <div className="card-body collapse-title p-5">
                     <h2 className="card-title">{name}</h2>

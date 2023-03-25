@@ -96,7 +96,7 @@ export default function Profile( {profileData, statsData, voteData}: { profileDa
       </Head>
       <main className='min-h-screen bg-base-200'>
         <Nav />
-        <div className='px-6'>
+        <div className='mx-5 md:max-w-3xl md:mx-auto'>
             <div className='flex flex-row items-center py-5 gap-4'>
                 <div>
                     {profileData.status.online ? <div><div className="avatar online"><div className="w-24 rounded-full"><img src={profileData.avatarUrl}/></div></div></div> : <div className="avatar offline"><div className="w-24 rounded-full"><img src={profileData.avatarUrl}/></div></div>}
@@ -120,7 +120,7 @@ export default function Profile( {profileData, statsData, voteData}: { profileDa
                 </div>
             </div>
 
-            <div className="stats stats-horizontal shadow max-w-full"> 
+            <div className="md:w-full stats stats-horizontal shadow max-w-full"> 
                 <div className="stat">
                     <div className="stat-figure text-secondary">
                     </div>
@@ -142,7 +142,7 @@ export default function Profile( {profileData, statsData, voteData}: { profileDa
             </div>
 
             <div className='flex flex-row justify-between'>
-                <div className="stats stats-vertical shadow mt-3"> 
+                <div className="stats stats-vertical md:w-90 shadow mt-3"> 
                     <div className="stat">
                         <div className="stat-figure text-secondary">
                         </div>
@@ -164,7 +164,7 @@ export default function Profile( {profileData, statsData, voteData}: { profileDa
                         </div>
                     </div>
                 </div>
-                <div className="stats stats-vertical shadow mt-3"> 
+                <div className="stats stats-vertical md:w-90 shadow mt-3"> 
                     <div className="stat">
                         <div className="stat-figure text-secondary">
                         </div>
