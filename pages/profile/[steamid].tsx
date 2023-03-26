@@ -3,8 +3,13 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Inter } from 'next/font/google'
 import Nav from '@/components/Nav'
+import { SteamProfile } from '@/lib/passport'
+import { NextSteamAuthApiRequest } from '@/lib/router'
+import { NextApiRequest, NextApiResponse } from "next";
+import router from '@/lib/router'
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 type ProfileProps = {
     avatarUrl: string,
@@ -68,8 +73,9 @@ type VoteProps = {
 }
 }
 
-export async function getServerSideProps(context: any) {
-    const { steamid } = context.query
+export async function getServerSideProps({query, req, res} : {query: any, req: NextSteamAuthApiRequest, res: NextApiResponse}) {
+    const { steamid } = query
+    await router.run(req, res);
     // Fetch data from external API
     const profileRes = await fetch(`https://api.intruderfps.com/agents/${steamid}/`)
     const profileData: ProfileProps = await profileRes.json()
@@ -79,23 +85,28 @@ export async function getServerSideProps(context: any) {
     const voteData: VoteProps = await voteRes.json()
     
     // Pass data to the page via props
-    return { props: { profileData, statsData, voteData } }
+    return { props: { 
+        profileData, 
+        statsData,
+        voteData,
+        user: req.user || null} }
   }
 
-export default function Profile( {profileData, statsData, voteData}: { profileData: ProfileProps, statsData: StatsProps, voteData: VoteProps} ) {
+export default function Profile( {profileData, statsData, voteData, user}: { profileData: ProfileProps, statsData: StatsProps, voteData: VoteProps, user: SteamProfile} ) {
     const matchWinRate = Math.round((statsData.matchesWon / (statsData.matchesWon + statsData.matchesLost)) * 100)
     const roundsWon = statsData.roundsWonCapture + statsData.roundsWonCustom + statsData.roundsWonElimination + statsData.roundsWonHack + statsData.roundsWonTimer
     const roundWinRate = Math.round((roundsWon / (roundsWon + statsData.roundsLost + statsData.roundsTied)) * 100)
+    const title = `Intruder Rooms | ${profileData.name}`
     return (
     <>
       <Head>
-        <title>Intruder Rooms | {profileData.name}</title>
+        <title>{title}</title>
         <meta name="description" content="Live room data for Intruder." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='min-h-screen bg-base-200'>
-        <Nav />
+        <Nav user={user} />
         <div className='mx-5 md:max-w-3xl md:mx-auto'>
             <div className='flex flex-row items-center py-5 gap-4'>
                 <div>
