@@ -1,7 +1,12 @@
 import Link from 'next/link'
-import { FaSteamSymbol } from 'react-icons/fa'
+import Steam from '@/components/Steam'
+import router from '@/lib/router'
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default function Nav() {
+import type { SteamProfile } from '@/lib/passport'
+import type { NextSteamAuthApiRequest } from "@/lib/router"
+
+export default function Nav({ user }: {user: SteamProfile}) {
     return (
         <div className="navbar bg-base-100">
         <div className='md:max-w-3xl md:mx-auto flex-1'>
@@ -9,7 +14,7 @@ export default function Nav() {
             <Link href="/" className="btn btn-ghost normal-case text-xl">Intruder Rooms</Link>
         </div>
         <div className="flex-none">
-            <button className="btn btn-sm btn-outline" disabled><FaSteamSymbol className="mr-2"/>Sign In</button>
+            <Steam user={user} />
         </div>
         </div>
         </div>
