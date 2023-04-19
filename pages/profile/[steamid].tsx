@@ -199,18 +199,20 @@ export default function Profile( {profileData, statsData, voteData, user}: { pro
                 </div>
             </div>
 
+
             <div className="py-3 overflow-x-auto">
                 <table className="table table-zebra w-full table-fixed">
                     <tbody>
-                        {Object.entries(statsData).map(([key, value]) => (
+                        {/* Map through the statsData array and create a table row for each item. For 'Time Played', display this in hours */}
+                        {Object.entries(statsData).map(([key, value]: [string, string | number]) => (
                             <tr key={key}>
-                                <td>{key.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}</td>
-                                <td>{value}</td>
+                                <td className='w-1/2'>{key.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })}</td>
+                                <td className='w-1/2'>{key === 'timePlayed' ? `${(typeof value === 'number' ? (value / 3600).toFixed(2) : value)} Hours` : key === 'timePlayedDemoted' ? `${(typeof value === 'number' ? (value / 3600).toFixed(2) : value)} Hours`  : key === 'lastUpdate' ? new Date(value).toLocaleString() : value}</td>
                             </tr>
-                        ))}
+                            ))}
                     </tbody>
                 </table>
-                </div>
+            </div>
             </div>
       </main>
     </>

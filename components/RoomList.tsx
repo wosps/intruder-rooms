@@ -81,7 +81,7 @@ export default function RoomList( { data } : RoomListProps) {
                     </div>
                 </div>
         
-                <div className="flex flex-col gap-3 pt-3 md:flex-row md:flex-wrap">
+                <div className="grid grid-cols-1 gap-3 pt-3 md:grid-cols-2 lg:grid-cols-2 items-start">
                 {makeRoomList()}
                 </div>
             </div>

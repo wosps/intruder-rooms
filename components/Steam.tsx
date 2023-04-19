@@ -1,9 +1,6 @@
 import Link from "next/link";
-import router from "../lib/router";
 import { FaSteamSymbol } from 'react-icons/fa'
 import type { SteamProfile } from '../lib/passport'
-import { NextApiRequest, NextApiResponse } from "next";
-import type { NextSteamAuthApiRequest } from "../lib/router";
 
 
 export default function Steam({ user }: {user: SteamProfile}) {
